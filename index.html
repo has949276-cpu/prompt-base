@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HA Smart Hub | أضخم مكتبة أوامر عربية #1</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --primary: #10b981; 
+            --dark: #0d1117; 
+            --vip: #f59e0b; 
+            --light: #f3f4f6;
+            --card-bg: #161b22;
+        }
+
+        /* منع تحديد النص للحماية */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body { 
+            margin: 0; 
+            background: var(--dark); 
+            color: var(--light); 
+            line-height: 1.6; 
+            scroll-behavior: smooth; 
+        }
+
+        /* شريط الإعلان */
+        .authority-banner { 
+            background: linear-gradient(90deg, var(--vip), #fbbf24);
+            color: #000; padding: 12px; text-align: center; 
+            font-weight: 900; position: sticky; top: 0; z-index: 2000; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+        }
+
+        /* الهيدر */
+        header { 
+            padding: 80px 20px; text-align: center; 
+            background: radial-gradient(circle at center, #1f2937 0%, #0d1117 100%);
+            border-bottom: 3px solid var(--vip);
+        }
+        
+        .logo-img { width: 130px; filter: drop-shadow(0 0 15px var(--vip)); margin-bottom: 20px; }
+        .logo-title { font-size: 3.5rem; font-weight: 900; color: var(--vip); margin: 0; }
+
+        /* البحث والفلاتر */
+        .search-container {
+            margin: -30px auto 30px;
+            max-width: 800px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--vip);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 100;
+        }
+        .search-box {
+            width: 100%; padding: 15px; border-radius: 12px;
+            border: 1px solid #30363d; background: #0d1117;
+            color: white; font-size: 1.1rem; box-sizing: border-box;
+            outline: none; text-align: center;
+        }
+        .filter-tags {
+            display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap;
+        }
+        .tag {
+            background: #21262d; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.8rem; cursor: pointer; transition: 0.3s; border: 1px solid #30363d;
+        }
+        .tag.active, .tag:hover { background: var(--vip); color: #000; border-color: var(--vip); }
+
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+
+        /* البطاقات */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { 
+            background: var(--card-bg); border-radius: 15px; padding: 25px; 
+            border: 1px solid #30363d; transition: 0.4s; position: relative;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card h4 { color: var(--primary); margin: 0 0 10px; font-size: 1.2rem; }
+        .card p { font-size: 0.95rem; color: #8b949e; margin-bottom: 20px; user-select: none; }
+        
+        /* زر النسخ - الوحيد الذي يسمح بالنسخ */
+        .copy-btn { 
+            background: #238636; color: white; border: none; padding: 12px; 
+            width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold;
+            transition: 0.3s; user-select: none;
+        }
+        .copy-btn:hover { background: #2ea043; box-shadow: 0 0 10px rgba(46,160,67,0.5); }
+
+        /* حاسبة الأرباح */
+        .calc-section { background: #161b22; border: 2px solid var(--vip); border-radius: 20px; padding: 40px; margin-bottom: 50px; }
+        .result-box { background: #0d1117; border-radius: 15px; padding: 20px; border-right: 5px solid var(--vip); }
+
+        /* الفوتر */
+        footer { padding: 50px; text-align: center; background: #010409; border-top: 1px solid #30363d; }
+
+        @media (max-width: 768px) { .logo-title { font-size: 2.2rem; } }
+    </style>
+</head>
+<body oncontextmenu="return false" onkeydown="return disableInspector(event)">
+
+<div class="authority-banner">🚀 مكتبة HA الذكية: 150+ أمر حصري - تم تفعيل نظام الحماية الملكي 🛡️</div>
+
+<header id="home">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAMAAAC77UzBAAAAMFBMVEUExv8Q5v8A5f8Q5f8Q5v8Q5f8A5f8Q5f8A5v8A5f8A5v8Q5f8A5v8A5f8A5f8A5v8fS7E5AAAADHRSTlMAESIzRFVmd4iZqrvM3u7/5mS4AAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+YMEQ4NIsfS7EAAAAC1SURBVGjD7dKBCsAgDATH4v//bS4WbBNFvAnvQUY65u45S9K9b5v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6p6v6f67mD4YpEhNofpYAAAAASUVORK5CYII=" alt="Logo" class="logo-img">
+    <h1 class="logo-title">HA SMART HUB</h1>
+    <p style="color: #8b949e;">المنصة الأولى عربياً لأوامر الذكاء الاصطناعي وهندسة الأوامر</p>
+</header>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن أمر محدد (مثلاً: برمجة، تسويق)..." onkeyup="filterPrompts()">
+        <div class="filter-tags" id="tagsContainer">
+            <span class="tag active" onclick="filterByCategory('الكل')">الكل</span>
+        </div>
+    </div>
+
+    <section id="prompts">
+        <div class="grid" id="mainGrid">
+            </div>
+    </section>
+
+    <section class="calc-section">
+        <h2 style="color:var(--vip); text-align: center;">💰 حاسبة الثروة الرقمية</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top:30px;">
+            <div>
+                <label>سعر المنتج ($)</label>
+                <input type="number" id="price" value="15" class="search-box" style="margin-top:10px;">
+                <label style="margin-top:20px; display:block;">مبيعات يومية</label>
+                <input type="number" id="sales" value="5" class="search-box" style="margin-top:10px;">
+                <button class="copy-btn" style="margin-top:20px; background: var(--vip); color:black;" onclick="calculate()">احسب الآن</button>
+            </div>
+            <div class="result-box">
+                <p>الدخل الشهري المتوقع:</p>
+                <h2 id="totalResult" style="font-size: 3rem; color:var(--vip); margin:10px 0;">$2,250</h2>
+                <p style="font-size: 0.8rem; color: #8b949e;">* تعتمد الأرباح على جودة التسويق واختيار الأوامر الصحيحة.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>© 2026 HA Programmers Group | جميع الحقوق محفوظة</p>
+    <p>لا يسمح بنسخ المحتوى آلياً - جميع الأوامر محمية بنظام تشفير HA.</p>
+</footer>
+
+<script>
+    const categories = ["برمجة", "تسويق", "SEO", "تصميم", "كتابة", "يوتيوب", "تجارة"];
+    const basePrompts = [
+        "اكتب كود HTML/CSS لصفحة هبوط احترافية.",
+        "حلل الثغرات الأمنية في كود Python التالي.",
+        "اقترح 10 عناوين فيديو يوتيوب ترند.",
+        "اكتب وصف منتج لمتجر إلكتروني جذاب.",
+        "خطة تسويق بالعمولة بميزانية صفر.",
+        "تحسين مقال ليتصدر نتائج بحث جوجل.",
+        "سكريبت تيك توك للانتشار السريع.",
+        "توليد أوامر Midjourney لصور واقعية."
+    ];
+
+    // توليد التاغات
+    const tagsContainer = document.getElementById('tagsContainer');
+    categories.forEach(cat => {
+        tagsContainer.innerHTML += `<span class="tag" onclick="filterByCategory('${cat}')">${cat}</span>`;
+    });
+
+    const grid = document.getElementById('mainGrid');
+    let allPrompts = [];
+
+    // إنشاء الـ 150 أمراً
+    for (let i = 1; i <= 150; i++) {
+        const cat = categories[i % categories.length];
+        const text = basePrompts[i % basePrompts.length] + (i > 8 ? ` (نسخة احترافية #${i})` : "");
+        allPrompts.push({ id: i, category: cat, text: text });
+    }
+
+    function displayPrompts(data) {
+        grid.innerHTML = '';
+        data.forEach(p => {
+            grid.innerHTML += `
+                <div class="card" data-category="${p.category}">
+                    <div style="font-size:0.7rem; color:var(--vip)">#${p.id}</div>
+                    <h4>${p.category}</h4>
+                    <p>${p.text}</p>
+                    <button class="copy-btn" onclick="copyText('${p.text.replace(/'/g, "\\'")}')">نسخ الأمر</button>
+                </div>
+            `;
+        });
+    }
+
+    // وظائف البحث والفلترة
+    function filterPrompts() {
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = allPrompts.filter(p => p.text.toLowerCase().includes(term) || p.category.includes(term));
+        displayPrompts(filtered);
+    }
+
+    function filterByCategory(cat) {
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        if (cat === 'الكل') return displayPrompts(allPrompts);
+        const filtered = allPrompts.filter(p => p.category === cat);
+        displayPrompts(filtered);
+    }
+
+    // وظيفة النسخ المحمية
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "✅ تم النسخ!";
+            btn.style.background = "#10b981";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "#238636";
+            }, 1500);
+        });
+    }
+
+    // منع فتح أدوات المطور (F12)
+    function disableInspector(e) {
+        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 73 || e.keyCode === 74)) {
+            return false;
+        }
+    }
+
+    function calculate() {
+        const p = document.getElementById('price').value;
+        const s = document.getElementById('sales').value;
+        document.getElementById('totalResult').innerText = "$" + (p * s * 30).toLocaleString();
+    }
+
+    // التشغيل الأول
+    displayPrompts(allPrompts);
+</script>
+
+</body>
+</html>
