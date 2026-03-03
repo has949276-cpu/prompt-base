@@ -14,9 +14,10 @@
             --vip: #f59e0b; 
             --light: #f3f4f6;
             --card-bg: #161b22;
+            --accent-glow: rgba(245, 158, 11, 0.3);
         }
 
-        /* حماية المحتوى من النسخ اليدوي */
+        /* حماية المحتوى */
         * {
             -webkit-user-select: none;
             user-select: none;
@@ -32,76 +33,141 @@
             scroll-behavior: smooth; 
         }
 
+        /* مساحة إعلانية مخصصة */
+        .ad-space {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed #30363d;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #484f58;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            overflow: hidden;
+        }
+        .ad-top { width: 100%; max-width: 728px; height: 90px; }
+        .ad-card { grid-column: 1 / -1; height: 120px; }
+
         .authority-banner { 
             background: linear-gradient(90deg, var(--vip), #fbbf24);
             color: #000; padding: 12px; text-align: center; 
             font-weight: 900; position: sticky; top: 0; z-index: 2000; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
         }
 
-        /* الهيدر والشعار */
         header { 
-            padding: 80px 20px; text-align: center; 
-            background: radial-gradient(circle at center, #1f2937 0%, #0d1117 100%);
+            padding: 100px 20px; text-align: center; 
+            background: radial-gradient(circle at center, #1c2128 0%, #0d1117 100%);
             border-bottom: 3px solid var(--vip);
+            position: relative;
         }
         
-        .logo-svg-container {
-            width: 100px; height: 100px; margin: 0 auto 20px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(245, 158, 11, 0.1);
-            border-radius: 50%; border: 2px solid var(--vip);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+        header::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 100px; background: linear-gradient(to top, var(--dark), transparent);
         }
 
-        .logo-title { font-size: 3rem; font-weight: 900; color: var(--vip); margin: 0; }
+        .logo-svg-container {
+            width: 110px; height: 110px; margin: 0 auto 25px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(245, 158, 11, 0.05);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 2px solid var(--vip);
+            box-shadow: 0 0 30px var(--accent-glow);
+            animation: morph 6s ease-in-out infinite;
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50%; }
+        }
+
+        .logo-title { 
+            font-size: 3.5rem; font-weight: 900; color: var(--vip); margin: 0; 
+            letter-spacing: -1px; text-shadow: 0 0 20px var(--accent-glow);
+        }
 
         .container { max-width: 1200px; margin: auto; padding: 20px; }
 
-        /* البحث */
         .search-container {
-            margin: -30px auto 30px; max-width: 800px; background: var(--card-bg);
-            padding: 20px; border-radius: 20px; border: 1px solid var(--vip);
+            margin: -50px auto 40px; max-width: 700px; 
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px; border-radius: 50px; border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             position: relative; z-index: 100;
         }
         .search-box {
-            width: 100%; padding: 15px; border-radius: 12px;
-            border: 1px solid #30363d; background: #0d1117;
+            width: 100%; padding: 18px 30px; border-radius: 40px;
+            border: none; background: #0d1117;
             color: white; font-size: 1.1rem; text-align: center; outline: none;
+            transition: 0.3s; border: 1px solid transparent;
         }
+        .search-box:focus { border-color: var(--vip); box-shadow: 0 0 15px var(--accent-glow); }
 
-        /* شبكة الأوامر */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        
         .card { 
-            background: var(--card-bg); border-radius: 15px; padding: 25px; 
-            border: 1px solid #30363d; transition: 0.4s;
+            background: var(--card-bg); border-radius: 20px; padding: 30px; 
+            border: 1px solid #30363d; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
         }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        .card h4 { color: var(--primary); margin: 0 0 10px; font-size: 1.2rem; }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transform: translateX(-100%); transition: 0.5s;
+        }
+        .card:hover::before { transform: translateX(100%); }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        
+        .card h4 { color: var(--primary); margin: 10px 0; font-size: 1.4rem; font-weight: 700; }
         
         .copy-btn { 
-            background: #238636; color: white; border: none; padding: 12px; 
-            width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s;
+            background: linear-gradient(45deg, #238636, #2ea043); color: white; border: none; padding: 14px; 
+            width: 100%; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.3s;
+            box-shadow: 0 4px 0 #1a6328; margin-top: 15px;
         }
-        .copy-btn:hover { background: #2ea043; }
+        .copy-btn:active { transform: translateY(3px); box-shadow: none; }
 
-        /* الأقسام الإضافية */
         .info-section {
-            background: var(--card-bg); border-radius: 20px; padding: 40px;
-            margin: 40px 0; border: 1px solid #30363d;
+            background: linear-gradient(145deg, #161b22, #0d1117); border-radius: 24px; padding: 45px;
+            margin: 50px 0; border: 1px solid #30363d; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-        .section-title { color: var(--vip); border-right: 4px solid var(--vip); padding-right: 15px; margin-bottom: 20px; }
+        .section-title { 
+            color: var(--vip); border-right: 5px solid var(--vip); padding-right: 20px; 
+            margin-bottom: 30px; font-size: 2rem; font-weight: 900;
+        }
 
-        /* الحاسبة */
-        .calc-box { background: #0d1117; padding: 30px; border-radius: 15px; border: 1px solid var(--vip); }
+        .calc-box { 
+            background: rgba(1, 4, 9, 0.5); padding: 40px; border-radius: 20px; 
+            border: 1px solid rgba(245, 158, 11, 0.2); 
+        }
 
-        footer { padding: 40px; text-align: center; background: #010409; border-top: 1px solid #30363d; color: #8b949e; }
+        footer { 
+            padding: 60px 20px; text-align: center; background: #010409; 
+            border-top: 1px solid #30363d; color: #8b949e; 
+        }
         
-        nav { margin-bottom: 20px; }
-        nav a { color: var(--light); text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
-        nav a:hover { color: var(--vip); }
+        nav a { 
+            color: var(--light); text-decoration: none; margin: 0 15px; 
+            font-size: 1rem; font-weight: 600; transition: 0.3s; opacity: 0.8;
+        }
+        nav a:hover { color: var(--vip); opacity: 1; text-shadow: 0 0 10px var(--accent-glow); }
 
-        .email-link { color: var(--primary); text-decoration: none; font-weight: bold; border-bottom: 1px dashed var(--primary); }
+        .email-link { 
+            color: var(--primary); text-decoration: none; font-weight: bold; 
+            padding: 5px 15px; border: 1px solid var(--primary); border-radius: 8px;
+            transition: 0.3s; display: inline-block; margin-top: 10px;
+        }
+        .email-link:hover { background: var(--primary); color: white; }
+
+        @media (max-width: 768px) {
+            .logo-title { font-size: 2.2rem; }
+            header { padding: 60px 20px; }
+            .info-section { padding: 25px; }
+        }
     </style>
 </head>
 <body oncontextmenu="return false">
@@ -125,32 +191,41 @@
 </header>
 
 <div class="container">
+    <div class="ad-space ad-top">
+        مساحة إعلانية (Banner 728x90)
+    </div>
+
     <div class="search-container">
         <input type="text" id="searchInput" class="search-box" placeholder="ابحث في 150+ أمر ذكي ومحمي..." onkeyup="filterPrompts()">
     </div>
 
-    <div class="grid" id="mainGrid"></div>
+    <div class="grid" id="mainGrid">
+        </div>
+
+    <div class="ad-space ad-card" style="margin-top: 40px;">
+        مساحة إعلانية (Native Ad - تحسين الدخل)
+    </div>
 
     <section id="about" class="info-section">
         <h2 class="section-title">👤 من نحن</h2>
-        <p>نحن فريق <b>HA Programmers</b>، رواد هندسة الأوامر (Prompt Engineering) في العالم العربي. نكرس مجهودنا لتوفير أدوات برمجية وذكية تمكن المبدعين من استغلال طاقة الذكاء الاصطناعي القصوى عبر مكتبة أوامر حصرية ومحمية بالكامل.</p>
+        <p style="font-size: 1.1rem;">نحن فريق <span style="color:var(--vip)">HA Programmers</span>، رواد هندسة الأوامر (Prompt Engineering) في العالم العربي. نكرس مجهودنا لتوفير أدوات برمجية وذكية تمكن المبدعين من استغلال طاقة الذكاء الاصطناعي القصوى عبر مكتبة أوامر حصرية ومحمية بالكامل.</p>
     </section>
 
     <section id="calc" class="info-section">
         <h2 class="section-title">💰 حاسبة الثروة الرقمية</h2>
         <div class="calc-box">
-            <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-around; align-items: center;">
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: space-around; align-items: center;">
                 <div>
-                    <label>سعر المنتج ($):</label><br>
-                    <input type="number" id="price" value="20" class="search-box" style="width: 150px; margin-top: 5px;" oninput="calculate()">
+                    <label style="color: var(--primary); font-weight: bold;">سعر المنتج ($):</label><br>
+                    <input type="number" id="price" value="20" class="search-box" style="width: 180px; margin-top: 10px; border: 1px solid #30363d;" oninput="calculate()">
                 </div>
                 <div>
-                    <label>مبيعات يومية:</label><br>
-                    <input type="number" id="sales" value="3" class="search-box" style="width: 150px; margin-top: 5px;" oninput="calculate()">
+                    <label style="color: var(--primary); font-weight: bold;">مبيعات يومية:</label><br>
+                    <input type="number" id="sales" value="3" class="search-box" style="width: 180px; margin-top: 10px; border: 1px solid #30363d;" oninput="calculate()">
                 </div>
-                <div style="text-align: center;">
-                    <p>الدخل الشهري المتوقع:</p>
-                    <h2 id="totalResult" style="color: var(--vip); font-size: 2.5rem; margin: 0;">$1,800</h2>
+                <div style="text-align: center; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px;">
+                    <p style="margin: 0 0 5px 0;">الدخل الشهري المتوقع:</p>
+                    <h2 id="totalResult" style="color: var(--vip); font-size: 3rem; margin: 0;">$1,800</h2>
                 </div>
             </div>
         </div>
@@ -160,7 +235,7 @@
         <h2 class="section-title">📧 التواصل معنا</h2>
         <p>لديك استفسار، طلب خاص، أو تود الانضمام لفريقنا؟ نحن هنا للمساعدة. تواصل معنا حصراً عبر البريد الإلكتروني الرسمي:</p>
         <p style="font-size: 1.2rem; margin-top: 15px;">
-            البريد الإلكتروني: <a href="mailto:has949276@gmail.com" class="email-link">has949276@gmail.com</a>
+             <a href="mailto:has949276@gmail.com" class="email-link">📧 has949276@gmail.com</a>
         </p>
     </section>
 
@@ -168,11 +243,20 @@
         <h2 class="section-title">⚖️ سياسة الخصوصية</h2>
         <p>خصوصية زوارنا هي أولويتنا. لا نقوم بتخزين أي بيانات شخصية أو ملفات تعريف ارتباط. نظام الحماية المستخدم في الموقع يهدف فقط لمنع النسخ غير المصرح به للأوامر البرمجية لضمان حقوق الملكية الفكرية لمجموعة HA.</p>
     </section>
+
+    <div class="ad-space ad-top" style="opacity: 0.6;">
+        مساحة إعلانية سفلية
+    </div>
 </div>
 
 <footer>
-    <p>© 2026 HA Programmers Group | جميع الحقوق محفوظة</p>
-    <p style="font-size: 0.8rem; margin-top: 5px;">تطوير وهندسة: فريق HA الرقمي</p>
+    <div style="margin-bottom: 20px;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+    </div>
+    <p style="color: var(--light); font-weight: bold; font-size: 1.1rem;">© 2026 HA Programmers Group</p>
+    <p style="font-size: 0.85rem; margin-top: 5px; color: #484f58;">تم التصميم والتطوير بواسطة فريق HA الرقمي بأعلى معايير الدقة</p>
 </footer>
 
 <script>
@@ -190,7 +274,7 @@
     const grid = document.getElementById('mainGrid');
     let allPrompts = [];
 
-    // توليد 150 أمراً فعلياً في الذاكرة
+    // توليد 150 أمراً فعلياً
     for (let i = 1; i <= 150; i++) {
         const index = i % categories.length;
         allPrompts.push({
@@ -200,49 +284,51 @@
         });
     }
 
-    // وظيفة العرض (مع تحديد العدد الأولي بـ 60 لتسريع التحميل)
     function displayPrompts(data) {
         grid.innerHTML = '';
-        data.forEach(p => {
+        data.forEach((p, idx) => {
+            // إدراج إعلان داخل الشبكة بعد كل 6 عناصر مثلاً
+            if (idx === 6) {
+                grid.innerHTML += `<div class="ad-space ad-card" style="grid-column: 1/-1">إعلان مدمج داخل المحتوى</div>`;
+            }
             grid.innerHTML += `
                 <div class="card">
-                    <div style="font-size:0.7rem; color:var(--vip)">ID: HA-${p.id}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center">
+                        <span style="font-size:0.7rem; color:var(--vip); background:rgba(245,158,11,0.1); padding:2px 8px; border-radius:10px">ID: HA-${p.id}</span>
+                        <span style="font-size:0.7rem; color:var(--primary)">مؤكد الحماية ✅</span>
+                    </div>
                     <h4>${p.category}</h4>
-                    <p>${p.text}</p>
-                    <button class="copy-btn" onclick="copyText(this, '${p.text}')">نسخ الأمر</button>
+                    <p style="color:#8b949e; min-height:60px">${p.text}</p>
+                    <button class="copy-btn" onclick="copyText(this, '${p.text}')">نسخ الأمر الملكي</button>
                 </div>`;
         });
     }
 
-    // البحث
     function filterPrompts() {
         const term = document.getElementById('searchInput').value.toLowerCase();
         const filtered = allPrompts.filter(p => p.text.toLowerCase().includes(term) || p.category.toLowerCase().includes(term));
         displayPrompts(filtered);
     }
 
-    // النسخ
     function copyText(btn, text) {
         navigator.clipboard.writeText(text).then(() => {
             const original = btn.innerText;
-            btn.innerText = "✅ تم النسخ";
+            btn.innerText = "✨ تم النسخ بنجاح";
             btn.style.background = "#10b981";
             setTimeout(() => {
                 btn.innerText = original;
-                btn.style.background = "#238636";
+                btn.style.background = "linear-gradient(45deg, #238636, #2ea043)";
             }, 1500);
         });
     }
 
-    // الحاسبة
     function calculate() {
         const p = document.getElementById('price').value || 0;
         const s = document.getElementById('sales').value || 0;
         document.getElementById('totalResult').innerText = "$" + (p * s * 30).toLocaleString();
     }
 
-    // التشغيل المبدئي
-    displayPrompts(allPrompts);
+    displayPrompts(allPrompts.slice(0, 60)); // عرض أول 60 لتسريع الصفحة
     calculate();
 </script>
 
