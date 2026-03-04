@@ -193,7 +193,7 @@
         </div>
 
     <div class="ad-space ad-card" style="margin-top: 40px;">
-        مساحة إعلانية (Native Ad - تحسين الدخل)
+        <p>مساحة إعلانية (Native Ad - تحسين الدخل)</p>
     </div>
 
     <section id="about" class="info-section">
@@ -235,7 +235,7 @@
     </section>
 
     <div class="ad-space ad-top" style="opacity: 0.6;">
-        مساحة إعلانية سفلية
+        <p>مساحة إعلانية سفلية</p>
     </div>
 </div>
 
@@ -258,7 +258,6 @@
     const grid = document.getElementById('mainGrid');
     let allPrompts = [];
 
-    // إنشاء 150 أمر دون حذف أي معلومة
     for (let i = 1; i <= 150; i++) {
         const index = i % categories.length;
         allPrompts.push({
@@ -270,7 +269,7 @@
 
     function displayPrompts(data) {
         grid.innerHTML = '';
-        data.forEach((p, idx) => {
+        data.forEach((p) => {
             grid.innerHTML += `
                 <div class="card">
                     <div style="display:flex; justify-content:space-between; align-items:center">
