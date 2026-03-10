@@ -1,303 +1,227 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="mainHtml">
 <head>
     <meta name="google-site-verification" content="BQj8t2TI1qrN7sbOJ-MweGBmTAs6fSymZlA7fd-aeOI" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HA Smart Hub | أضخم مكتبة أوامر عربية #1</title>
+    <title id="metaTitle">HA Smart Hub | أضخم مكتبة أوامر ذكاء اصطناعي #1</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <script src="https://pl28825044.effectivegatecpm.com/c3/eb/01/c3eb01a1312b0990825156562c460151.js"></script>
 
     <style>
         :root { 
-            --primary: #10b981; 
-            --dark: #0d1117; 
-            --vip: #f59e0b; 
-            --light: #f3f4f6;
-            --card-bg: #161b22;
-            --accent-glow: rgba(245, 158, 11, 0.3);
+            --primary: #10b981; --dark: #0d1117; --vip: #f59e0b; 
+            --light: #f3f4f6; --card-bg: #161b22; --accent-glow: rgba(245, 158, 11, 0.3);
         }
 
-        /* حماية المحتوى */
-        * {
-            -webkit-user-select: none;
-            user-select: none;
-            font-family: 'Cairo', sans-serif;
-            box-sizing: border-box;
-        }
-
-        body { 
-            margin: 0; 
-            background: var(--dark); 
-            color: var(--light); 
-            line-height: 1.6; 
-            scroll-behavior: smooth; 
-        }
-
-        /* مساحة إعلانية مخصصة */
-        .ad-space {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed #30363d;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #484f58;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            overflow: hidden;
-        }
-        .ad-top { width: 100%; max-width: 728px; min-height: 90px; }
-        .ad-card { grid-column: 1 / -1; height: 120px; }
-
-        .authority-banner { 
-            background: linear-gradient(90deg, var(--vip), #fbbf24);
-            color: #000; padding: 12px; text-align: center; 
-            font-weight: 900; position: sticky; top: 0; z-index: 2000; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
-            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
-        }
-
-        header { 
-            padding: 100px 20px; text-align: center; 
-            background: radial-gradient(circle at center, #1c2128 0%, #0d1117 100%);
-            border-bottom: 3px solid var(--vip);
-            position: relative;
-        }
+        * { -webkit-user-select: none; user-select: none; box-sizing: border-box; transition: all 0.3s ease; }
+        body { margin: 0; background: var(--dark); color: var(--light); font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
         
-        .logo-svg-container {
-            width: 110px; height: 110px; margin: 0 auto 25px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(245, 158, 11, 0.05);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            border: 2px solid var(--vip);
-            box-shadow: 0 0 30px var(--accent-glow);
-            animation: morph 6s ease-in-out infinite;
-        }
+        /* اللغة الإنجليزية */
+        html[lang="en"] { direction: ltr; }
+        html[lang="en"] body { font-family: 'Inter', sans-serif; }
 
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 50%; }
-        }
+        .lang-switcher { position: fixed; top: 60px; left: 15px; z-index: 3000; }
+        .lang-btn { background: var(--vip); color: #000; border: none; padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 
-        .logo-title { 
-            font-size: 3.5rem; font-weight: 900; color: var(--vip); margin: 0; 
-            letter-spacing: -1px; text-shadow: 0 0 20px var(--accent-glow);
-        }
+        .authority-banner { background: linear-gradient(90deg, var(--vip), #fbbf24); color: #000; padding: 12px; text-align: center; font-weight: 900; position: sticky; top: 0; z-index: 2000; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+
+        header { padding: 80px 20px; text-align: center; background: radial-gradient(circle at center, #1c2128 0%, #0d1117 100%); border-bottom: 3px solid var(--vip); }
+        
+        .logo-title { font-size: 3.5rem; font-weight: 900; color: var(--vip); margin: 0; text-shadow: 0 0 20px var(--accent-glow); }
 
         .container { max-width: 1200px; margin: auto; padding: 20px; }
 
-        .search-container {
-            margin: -50px auto 40px; max-width: 700px; 
-            background: rgba(22, 27, 34, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 10px; border-radius: 50px; border: 1px solid rgba(245, 158, 11, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative; z-index: 100;
-        }
-        .search-box {
-            width: 100%; padding: 18px 30px; border-radius: 40px;
-            border: none; background: #0d1117;
-            color: white; font-size: 1.1rem; text-align: center; outline: none;
-            transition: 0.3s; border: 1px solid transparent;
-        }
-        .search-box:focus { border-color: var(--vip); box-shadow: 0 0 15px var(--accent-glow); }
+        /* تبويبات الأقسام */
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .tab-btn { background: var(--card-bg); border: 1px solid #30363d; color: white; padding: 10px 20px; border-radius: 30px; cursor: pointer; }
+        .tab-btn.active { background: var(--primary); border-color: var(--primary); }
+
+        .search-container { margin: 20px auto 40px; max-width: 700px; position: relative; z-index: 100; }
+        .search-box { width: 100%; padding: 18px 30px; border-radius: 40px; border: 1px solid rgba(245,158,11,0.3); background: #0d1117; color: white; font-size: 1.1rem; text-align: center; outline: none; }
+
+        .content-section { display: none; animation: fadeIn 0.4s; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); border-radius: 20px; padding: 30px; border: 1px solid #30363d; position: relative; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
         
-        .card { 
-            background: var(--card-bg); border-radius: 20px; padding: 30px; 
-            border: 1px solid #30363d; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; overflow: hidden;
-        }
-        .card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        
-        .card h4 { color: var(--primary); margin: 10px 0; font-size: 1.4rem; font-weight: 700; }
-        
-        .copy-btn { 
-            background: linear-gradient(45deg, #238636, #2ea043); color: white; border: none; padding: 14px; 
-            width: 100%; border-radius: 12px; cursor: pointer; font-weight: bold; transition: 0.3s;
-            box-shadow: 0 4px 0 #1a6328; margin-top: 15px;
-        }
+        /* المقالات */
+        .article-card { background: #1c2128; padding: 30px; border-radius: 20px; border-right: 5px solid var(--vip); margin-bottom: 30px; line-height: 1.8; }
+        .article-card h2 { color: var(--vip); }
 
-        .info-section {
-            background: linear-gradient(145deg, #161b22, #0d1117); border-radius: 24px; padding: 45px;
-            margin: 50px 0; border: 1px solid #30363d;
-        }
-        .section-title { 
-            color: var(--vip); border-right: 5px solid var(--vip); padding-right: 20px; 
-            margin-bottom: 30px; font-size: 2rem; font-weight: 900;
-        }
+        .network-section { background: rgba(255,255,255,0.03); border: 1px solid #30363d; padding: 30px; border-radius: 24px; margin-top: 50px; text-align: center; }
+        .network-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .network-item { background: var(--dark); padding: 15px; border-radius: 12px; border: 1px solid #30363d; text-decoration: none; color: white; font-weight: bold; }
+        .network-item:hover { border-color: var(--vip); color: var(--vip); }
 
-        .calc-box { 
-            background: rgba(1, 4, 9, 0.5); padding: 40px; border-radius: 20px; 
-            border: 1px solid rgba(245, 158, 11, 0.2); 
-        }
-
-        footer { 
-            padding: 60px 20px; text-align: center; background: #010409; 
-            border-top: 1px solid #30363d; color: #8b949e; 
-        }
-        
-        nav a { 
-            color: var(--light); text-decoration: none; margin: 0 15px; 
-            font-size: 1rem; font-weight: 600; transition: 0.3s;
-        }
-
-        .email-link { 
-            color: var(--primary); text-decoration: none; font-weight: bold; 
-            padding: 5px 15px; border: 1px solid var(--primary); border-radius: 8px;
-            display: inline-block; margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .logo-title { font-size: 2.2rem; }
-            header { padding: 60px 20px; }
-        }
+        footer { padding: 40px; text-align: center; background: #010409; color: #8b949e; border-top: 1px solid #30363d; }
     </style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="d08acf53-9f4e-4baa-944d-bb8d0f831957"></script>
 </head>
 <body oncontextmenu="return false">
 
-<div class="authority-banner">🚀 مكتبة HA الذكية: +150 أمر حصري - نظام الحماية الملكي نشط 🛡️</div>
+<div class="lang-switcher">
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">English</button>
+</div>
 
-<header id="home">
-    <div class="logo-svg-container">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-    </div>
+<div class="authority-banner" id="topBanner">🚀 مكتبة HA الذكية: +150 أمر حصري - نظام الحماية الملكي نشط 🛡️</div>
+
+<header>
     <h1 class="logo-title">HA SMART HUB</h1>
-    <nav>
-        <a href="#home">الرئيسية</a>
-        <a href="#about">من نحن</a>
-        <a href="#calc">الحاسبة</a>
-        <a href="#contact">التواصل</a>
-        <a href="#privacy">الخصوصية</a>
-    </nav>
+    <p id="mainSlogan" style="color: var(--primary); font-weight: bold;">بوابتك لاحتراف الذكاء الاصطناعي</p>
 </header>
 
 <div class="container">
-    <div class="ad-space ad-top">
+    <div class="nav-tabs">
+        <button class="tab-btn active" id="t1" onclick="showSection('promptsSec')">💎 مكتبة الأوامر</button>
+        <button class="tab-btn" id="t2" onclick="showSection('articlesSec')">📚 مقالات HA</button>
+        <button class="tab-btn" id="t3" onclick="showSection('calcSec')">💰 الحاسبة</button>
+    </div>
+
+    <div style="margin: 20px auto; text-align: center; min-height: 90px;">
         <script async="async" data-cfasync="false" src="https://pl28825118.effectivegatecpm.com/6176d6409e3673252f81c5cbb95ba586/invoke.js"></script>
         <div id="container-6176d6409e3673252f81c5cbb95ba586"></div>
     </div>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث في 150+ أمر ذكي ومحمي..." onkeyup="filterPrompts()">
-    </div>
-
-    <div class="grid" id="mainGrid">
+    <section id="promptsSec" class="content-section active">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-box" placeholder="ابحث في الأوامر الذكية..." onkeyup="filterPrompts()">
         </div>
-
-    <div class="ad-space ad-card" style="margin-top: 40px;">
-        <p>مساحة إعلانية (Native Ad - تحسين الدخل)</p>
-    </div>
-
-    <section id="about" class="info-section">
-        <h2 class="section-title">👤 من نحن</h2>
-        <p style="font-size: 1.1rem;">نحن فريق <span style="color:var(--vip)">HA Programmers</span>، رواد هندسة الأوامر (Prompt Engineering) في العالم العربي. نكرس مجهودنا لتوفير أدوات برمجية وذكية تمكن المبدعين من استغلال طاقة الذكاء الاصطناعي القصوى عبر مكتبة أوامر حصرية ومحمية بالكامل.</p>
+        <div class="grid" id="mainGrid"></div>
     </section>
 
-    <section id="calc" class="info-section">
-        <h2 class="section-title">💰 حاسبة الثروة الرقمية</h2>
-        <div class="calc-box">
-            <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: space-around; align-items: center;">
+    <section id="articlesSec" class="content-section">
+        <div class="article-card">
+            <h2 id="art1T">هندسة الأوامر (Prompt Engineering) في 2026</h2>
+            <p id="art1B">تعلم كيف تخاطب الآلة. الأوامر ليست مجرد كلمات، بل هي شيفرات برمجية للذكاء الاصطناعي. نحن في HA Smart Hub نضمن لك الحصول على نتائج دقيقة عبر أوامرنا المجربة والمحمية.</p>
+        </div>
+        <div class="article-card" style="border-color: var(--primary);">
+            <h2 id="art2T">الربح من محتوى الذكاء الاصطناعي</h2>
+            <p id="art2B">يمكنك الآن بناء عملك الخاص باستخدام أوامرنا لكتابة المقالات وتصميم الصور. لا تنسَ استخدام أداة <a href="https://has949276-cpu.github.io/task-master/" style="color:var(--primary)">Task Master</a> لتنظيم جدول نشرك اليومي.</p>
+        </div>
+    </section>
+
+    <section id="calcSec" class="content-section">
+        <div style="background: var(--card-bg); padding: 40px; border-radius: 24px; text-align: center; border: 1px solid #30363d;">
+            <h2 id="calcTitle" style="color: var(--vip);">💰 حاسبة الثروة الرقمية</h2>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 30px 0;">
                 <div>
-                    <label style="color: var(--primary); font-weight: bold;">سعر المنتج ($):</label><br>
-                    <input type="number" id="price" value="20" class="search-box" style="width: 180px; margin-top: 10px; border: 1px solid #30363d;" oninput="calculate()">
+                    <label id="l_price">سعر المنتج ($)</label><br>
+                    <input type="number" id="price" value="20" class="search-box" style="width: 150px; margin-top:10px" oninput="calculate()">
                 </div>
                 <div>
-                    <label style="color: var(--primary); font-weight: bold;">مبيعات يومية:</label><br>
-                    <input type="number" id="sales" value="3" class="search-box" style="width: 180px; margin-top: 10px; border: 1px solid #30363d;" oninput="calculate()">
-                </div>
-                <div style="text-align: center; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px;">
-                    <p style="margin: 0 0 5px 0;">الدخل الشهري المتوقع:</p>
-                    <h2 id="totalResult" style="color: var(--vip); font-size: 3rem; margin: 0;">$1,800</h2>
+                    <label id="l_sales">مبيعات يومية</label><br>
+                    <input type="number" id="sales" value="3" class="search-box" style="width: 150px; margin-top:10px" oninput="calculate()">
                 </div>
             </div>
+            <h1 id="totalResult" style="color: var(--primary); font-size: 3.5rem;">$1,800</h1>
+            <p id="calcNote">الدخل الشهري المتوقع</p>
         </div>
     </section>
 
-    <section id="contact" class="info-section">
-        <h2 class="section-title">📧 التواصل معنا</h2>
-        <p>لديك استفسار، طلب خاص، أو تود الانضمام لفريقنا؟ نحن هنا للمساعدة. تواصل معنا حصراً عبر البريد الإلكتروني الرسمي:</p>
-        <p style="font-size: 1.2rem; margin-top: 15px;">
-             <a href="mailto:has949276@gmail.com" class="email-link">📧 has949276@gmail.com</a>
-        </p>
-    </section>
-
-    <section id="privacy" class="info-section">
-        <h2 class="section-title">⚖️ سياسة الخصوصية</h2>
-        <p>خصوصية زوارنا هي أولويتنا. لا نقوم بتخزين أي بيانات شخصية أو ملفات تعريف ارتباط. نظام الحماية المستخدم في الموقع يهدف فقط لمنع النسخ غير المصرح به للأوامر البرمجية لضمان حقوق الملكية الفكرية لمجموعة HA.</p>
-    </section>
-
-    <div class="ad-space ad-top" style="opacity: 0.6;">
-        <p>مساحة إعلانية سفلية</p>
+    <div class="network-section">
+        <h3 id="netTitle">🚀 استكشف نظام HA البرمجي</h3>
+        <div class="network-grid">
+            <a href="https://has949276-cpu.github.io/task-master/" class="network-item">Task Master</a>
+            <a href="https://has949276-cpu.github.io/engali/" class="network-item">EngAli</a>
+            <a href="https://has949276-cpu.github.io/prompt-base/" class="network-item">Prompt Base</a>
+            <a href="https://has949276-cpu.github.io/" class="network-item">Global Toolbox</a>
+        </div>
     </div>
 </div>
 
 <footer>
-    <p style="color: var(--light); font-weight: bold; font-size: 1.1rem;">© 2026 HA Programmers Group</p>
-    <p style="font-size: 0.85rem; margin-top: 5px; color: #484f58;">تم التصميم والتطوير بواسطة فريق HA الرقمي بأعلى معايير الدقة</p>
+    <p id="foot1" style="color: var(--light); font-weight: bold;">© 2026 HA Programmers Group</p>
+    <p id="foot2" style="font-size: 0.85rem;">تم التطوير بواسطة فريق HA الرقمي بأعلى معايير الدقة</p>
 </footer>
 
 <script>
+    let curLang = 'ar';
     const categories = ["برمجة", "تسويق", "SEO", "تصميم", "كتابة", "تحليل"];
-    const baseDescriptions = [
-        "أمر متقدم لإنشاء أكواد برمجية خالية من الأخطاء.",
-        "استراتيجية تسويقية شاملة لزيادة المبيعات بنسبة 40%.",
-        "تحسين محركات البحث SEO للمواقع التقنية الكبرى.",
-        "توليد صور فنية واقعية باستخدام أوامر Midjourney.",
-        "كتابة مقالات احترافية متوافقة مع معايير E-E-A-T.",
-        "تحليل بيانات معقدة واستخراج تقارير ذكية."
-    ];
+    const baseDescAr = ["أمر لإنشاء كود برمجي", "استراتيجية تسويق شاملة", "تحسين محركات البحث SEO", "توليد صور واقعية", "كتابة مقال احترافي", "تحليل بيانات ذكي"];
+    const baseDescEn = ["Code Generation Prompt", "Marketing Strategy", "SEO Optimization", "Realistic Image Gen", "Professional Writing", "Smart Data Analysis"];
 
-    const grid = document.getElementById('mainGrid');
     let allPrompts = [];
+    for (let i = 1; i <= 60; i++) {
+        allPrompts.push({ id: i, catAr: categories[i % 6], catEn: ["Dev", "Marketing", "SEO", "Design", "Writing", "Analysis"][i % 6], textAr: baseDescAr[i % 6] + ` (HA-V${i})`, textEn: baseDescEn[i % 6] + ` (HA-V${i})` });
+    }
 
-    for (let i = 1; i <= 150; i++) {
-        const index = i % categories.length;
-        allPrompts.push({
-            id: i,
-            category: categories[index],
-            text: baseDescriptions[index] + ` (النسخة الرقمية المحدثة HA-V${i})`
-        });
+    const langData = {
+        en: {
+            banner: "🚀 HA Smart Hub: +150 Exclusive Prompts - Security Active 🛡️", slogan: "Your Gateway to AI Mastery",
+            t1: "💎 Prompts", t2: "📚 Articles", t3: "💰 Calculator", search: "Search smart prompts...",
+            calcT: "Digital Wealth Calculator", l_price: "Price ($)", l_sales: "Daily Sales", cNote: "Expected Monthly Income",
+            netT: "🚀 Explore HA Ecosystem", foot1: "© 2026 HA Programmers Group", foot2: "Developed with precision by HA Digital Team",
+            art1T: "Prompt Engineering in 2026", art1B: "Learn to speak to machines. Prompts are the code of AI. We ensure results with our secured library.",
+            art2T: "Profiting from AI Content", art2B: "Build your business using our prompts. Use <a href='https://has949276-cpu.github.io/task-master/'>Task Master</a> to manage your schedule."
+        },
+        ar: {
+            banner: "🚀 مكتبة HA الذكية: +150 أمر حصري - نظام الحماية الملكي نشط 🛡️", slogan: "بوابتك لاحتراف الذكاء الاصطناعي",
+            t1: "💎 مكتبة الأوامر", t2: "📚 مقالات HA", t3: "💰 الحاسبة", search: "ابحث في الأوامر الذكية...",
+            calcT: "💰 حاسبة الثروة الرقمية", l_price: "سعر المنتج ($)", l_sales: "مبيعات يومية", cNote: "الدخل الشهري المتوقع",
+            netT: "🚀 استكشف نظام HA البرمجي", foot1: "© 2026 HA Programmers Group", foot2: "تم التطوير بواسطة فريق HA الرقمي بأعلى معايير الدقة",
+            art1T: "هندسة الأوامر (Prompt Engineering) في 2026", art1B: "تعلم كيف تخاطب الآلة. الأوامر ليست مجرد كلمات، بل هي شيفرات برمجية للذكاء الاصطناعي.",
+            art2T: "الربح من محتوى الذكاء الاصطناعي", art2B: "يمكنك الآن بناء عملك الخاص باستخدام أوامرنا. استخدم <a href='https://has949276-cpu.github.io/task-master/'>Task Master</a> لتنظيم جدولك."
+        }
+    };
+
+    function toggleLang() {
+        curLang = curLang === 'ar' ? 'en' : 'ar';
+        const h = document.getElementById('mainHtml'); h.lang = curLang; h.dir = curLang === 'ar' ? 'rtl' : 'ltr';
+        document.getElementById('langBtn').innerText = curLang === 'ar' ? 'English' : 'العربية';
+        const d = langData[curLang];
+        document.getElementById('topBanner').innerText = d.banner;
+        document.getElementById('mainSlogan').innerText = d.slogan;
+        document.getElementById('t1').innerText = d.t1; document.getElementById('t2').innerText = d.t2; document.getElementById('t3').innerText = d.t3;
+        document.getElementById('searchInput').placeholder = d.search;
+        document.getElementById('calcTitle').innerText = d.calcT;
+        document.getElementById('l_price').innerText = d.l_price; document.getElementById('l_sales').innerText = d.l_sales;
+        document.getElementById('calcNote').innerText = d.cNote;
+        document.getElementById('netTitle').innerText = d.netT;
+        document.getElementById('foot1').innerText = d.foot1; document.getElementById('foot2').innerText = d.foot2;
+        document.getElementById('art1T').innerText = d.art1T; document.getElementById('art1B').innerHTML = d.art1B;
+        document.getElementById('art2T').innerText = d.art2T; document.getElementById('art2B').innerHTML = d.art2B;
+        filterPrompts();
+    }
+
+    function showSection(id) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.currentTarget.classList.add('active');
     }
 
     function displayPrompts(data) {
+        const grid = document.getElementById('mainGrid');
         grid.innerHTML = '';
-        data.forEach((p) => {
+        data.forEach(p => {
             grid.innerHTML += `
                 <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center">
-                        <span style="font-size:0.7rem; color:var(--vip); background:rgba(245,158,11,0.1); padding:2px 8px; border-radius:10px">ID: HA-${p.id}</span>
-                        <span style="font-size:0.7rem; color:var(--primary)">مؤكد الحماية ✅</span>
-                    </div>
-                    <h4>${p.category}</h4>
-                    <p style="color:#8b949e; min-height:60px">${p.text}</p>
-                    <button class="copy-btn" onclick="copyText(this, '${p.text}')">نسخ الأمر الملكي</button>
+                    <span style="font-size:0.7rem; color:var(--vip)">ID: HA-${p.id}</span>
+                    <h4 style="color:var(--primary)">${curLang === 'ar' ? p.catAr : p.catEn}</h4>
+                    <p style="color:#8b949e">${curLang === 'ar' ? p.textAr : p.textEn}</p>
+                    <button style="width:100%; background:var(--primary); border:none; color:white; padding:10px; border-radius:10px; cursor:pointer" onclick="copyText(this, '${curLang === 'ar' ? p.textAr : p.textEn}')">
+                        ${curLang === 'ar' ? 'نسخ الأمر الملكي' : 'Copy Royal Prompt'}
+                    </button>
                 </div>`;
         });
     }
 
     function filterPrompts() {
         const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allPrompts.filter(p => p.text.toLowerCase().includes(term) || p.category.toLowerCase().includes(term));
-        displayPrompts(filtered.slice(0, 60));
+        const filtered = allPrompts.filter(p => (curLang === 'ar' ? p.textAr : p.textEn).toLowerCase().includes(term));
+        displayPrompts(filtered.slice(0, 30));
     }
 
     function copyText(btn, text) {
         navigator.clipboard.writeText(text).then(() => {
-            const original = btn.innerText;
-            btn.innerText = "✨ تم النسخ بنجاح";
-            btn.style.background = "#10b981";
-            setTimeout(() => {
-                btn.innerText = original;
-                btn.style.background = "linear-gradient(45deg, #238636, #2ea043)";
-            }, 1500);
+            const old = btn.innerText; btn.innerText = "✅";
+            setTimeout(() => btn.innerText = old, 1000);
         });
     }
 
@@ -307,9 +231,8 @@
         document.getElementById('totalResult').innerText = "$" + (p * s * 30).toLocaleString();
     }
 
-    displayPrompts(allPrompts.slice(0, 60));
+    displayPrompts(allPrompts.slice(0, 30));
     calculate();
 </script>
-
 </body>
 </html>
