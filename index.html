@@ -142,19 +142,54 @@
 
 <script>
     let curLang = 'ar';
-    const categories = ["برمجة", "تسويق", "SEO", "تصميم", "كتابة", "تحليل"];
-    const baseDescAr = ["أمر لإنشاء كود برمجي", "استراتيجية تسويق شاملة", "تحسين محركات البحث SEO", "توليد صور واقعية", "كتابة مقال احترافي", "تحليل بيانات ذكي"];
-    const baseDescEn = ["Code Generation Prompt", "Marketing Strategy", "SEO Optimization", "Realistic Image Gen", "Professional Writing", "Smart Data Analysis"];
+    
+    // تم توسيع التصنيفات لتشمل 10 أنواع مختلفة
+    const categoriesAr = ["برمجة متقدمة", "تسويق رقمي", "تحسين SEO", "تصميم فني", "كتابة إبداعية", "تحليل بيانات", "تجارة إلكترونية", "أمن سيبراني", "تعلم آلة", "تطوير تطبيقات"];
+    const categoriesEn = ["Dev Ops", "E-Marketing", "SEO Expert", "Art Design", "Copywriting", "Analytics", "E-Commerce", "Cyber Security", "Machine Learning", "App Dev"];
+
+    const baseDescAr = [
+        "أمر لإنشاء نظام إدارة قواعد بيانات متكامل", 
+        "خطة تسويقية لمنصة تواصل اجتماعي جديدة", 
+        "استراتيجية تصدر نتائج البحث للكلمات الصعبة", 
+        "توليد صور سينمائية فائقة الدقة للإعلانات", 
+        "كتابة سيناريو يوتيوب احترافي وجذاب", 
+        "تحليل بيانات المبيعات واستخراج الأنماط",
+        "تحسين معدل التحويل لمتجر شوبيفاي",
+        "فحص ثغرات الكود البرمجي وتأمينها",
+        "بناء نموذج تنبؤي باستخدام بايثون",
+        "تصميم واجهات مستخدم UI/UX عصرية"
+    ];
+
+    const baseDescEn = [
+        "Complete DB Management System Prompt", 
+        "Viral Marketing Plan for Social Media", 
+        "Advanced SEO Ranking Strategy", 
+        "Ultra-HD Cinematic Advertising Images", 
+        "Professional YouTube Scriptwriting", 
+        "Sales Data Trend Analysis",
+        "Shopify Conversion Rate Optimization",
+        "Security Code Audit & Patching",
+        "Python Predictive Modeling Prompt",
+        "Modern UI/UX Design Framework"
+    ];
 
     let allPrompts = [];
-    for (let i = 1; i <= 60; i++) {
-        allPrompts.push({ id: i, catAr: categories[i % 6], catEn: ["Dev", "Marketing", "SEO", "Design", "Writing", "Analysis"][i % 6], textAr: baseDescAr[i % 6] + ` (HA-V${i})`, textEn: baseDescEn[i % 6] + ` (HA-V${i})` });
+    // إنشاء 150 أمراً متنوعاً
+    for (let i = 1; i <= 150; i++) {
+        let index = i % 10;
+        allPrompts.push({ 
+            id: i, 
+            catAr: categoriesAr[index], 
+            catEn: categoriesEn[index], 
+            textAr: baseDescAr[index] + ` (الإصدار الملكي HA-V${i})`, 
+            textEn: baseDescEn[index] + ` (Royal Edition HA-V${i})` 
+        });
     }
 
     const langData = {
         en: {
             banner: "🚀 HA Smart Hub: +150 Exclusive Prompts - Security Active 🛡️", slogan: "Your Gateway to AI Mastery",
-            t1: "💎 Prompts", t2: "📚 Articles", t3: "💰 Calculator", search: "Search smart prompts...",
+            t1: "💎 Prompts", t2: "📚 Articles", t3: "💰 Calculator", search: "Search 150+ smart prompts...",
             calcT: "Digital Wealth Calculator", l_price: "Price ($)", l_sales: "Daily Sales", cNote: "Expected Monthly Income",
             netT: "🚀 Explore HA Ecosystem", foot1: "© 2026 HA Programmers Group", foot2: "Developed with precision by HA Digital Team",
             art1T: "Prompt Engineering in 2026", art1B: "Learn to speak to machines. Prompts are the code of AI. We ensure results with our secured library.",
@@ -162,7 +197,7 @@
         },
         ar: {
             banner: "🚀 مكتبة HA الذكية: +150 أمر حصري - نظام الحماية الملكي نشط 🛡️", slogan: "بوابتك لاحتراف الذكاء الاصطناعي",
-            t1: "💎 مكتبة الأوامر", t2: "📚 مقالات HA", t3: "💰 الحاسبة", search: "ابحث في الأوامر الذكية...",
+            t1: "💎 مكتبة الأوامر", t2: "📚 مقالات HA", t3: "💰 الحاسبة", search: "ابحث في أكثر من 150 أمر ذكي...",
             calcT: "💰 حاسبة الثروة الرقمية", l_price: "سعر المنتج ($)", l_sales: "مبيعات يومية", cNote: "الدخل الشهري المتوقع",
             netT: "🚀 استكشف نظام HA البرمجي", foot1: "© 2026 HA Programmers Group", foot2: "تم التطوير بواسطة فريق HA الرقمي بأعلى معايير الدقة",
             art1T: "هندسة الأوامر (Prompt Engineering) في 2026", art1B: "تعلم كيف تخاطب الآلة. الأوامر ليست مجرد كلمات، بل هي شيفرات برمجية للذكاء الاصطناعي.",
@@ -202,7 +237,7 @@
         data.forEach(p => {
             grid.innerHTML += `
                 <div class="card">
-                    <span style="font-size:0.7rem; color:var(--vip)">ID: HA-${p.id}</span>
+                    <span style="font-size:0.7rem; color:var(--vip)">ID: HA-PROMPT-${p.id}</span>
                     <h4 style="color:var(--primary)">${curLang === 'ar' ? p.catAr : p.catEn}</h4>
                     <p style="color:#8b949e">${curLang === 'ar' ? p.textAr : p.textEn}</p>
                     <button style="width:100%; background:var(--primary); border:none; color:white; padding:10px; border-radius:10px; cursor:pointer" onclick="copyText(this, '${curLang === 'ar' ? p.textAr : p.textEn}')">
@@ -214,13 +249,17 @@
 
     function filterPrompts() {
         const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allPrompts.filter(p => (curLang === 'ar' ? p.textAr : p.textEn).toLowerCase().includes(term));
-        displayPrompts(filtered.slice(0, 30));
+        const filtered = allPrompts.filter(p => 
+            (curLang === 'ar' ? p.textAr : p.textEn).toLowerCase().includes(term) ||
+            (curLang === 'ar' ? p.catAr : p.catEn).toLowerCase().includes(term)
+        );
+        // عرض أول 50 نتيجة عند البحث لضمان السرعة، والبقية تظهر بالبحث الدقيق
+        displayPrompts(filtered);
     }
 
     function copyText(btn, text) {
         navigator.clipboard.writeText(text).then(() => {
-            const old = btn.innerText; btn.innerText = "✅";
+            const old = btn.innerText; btn.innerText = "✅ DONE";
             setTimeout(() => btn.innerText = old, 1000);
         });
     }
@@ -231,8 +270,10 @@
         document.getElementById('totalResult').innerText = "$" + (p * s * 30).toLocaleString();
     }
 
-    displayPrompts(allPrompts.slice(0, 30));
+    // تهيئة العرض بـ 150 أمراً
+    displayPrompts(allPrompts);
     calculate();
 </script>
 </body>
 </html>
+
